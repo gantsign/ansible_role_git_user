@@ -1,5 +1,49 @@
 ---
 - name: Converge
   hosts: all
+
+  pre_tasks:
+    - name: create test users
+      become: yes
+      user:
+        name: '{{ item }}'
+        home: '/home/{{ item }}'
+        createhome: yes
+      with_items:
+        - test_usr1
+        - test_usr2
+        - test_usr3
+        - test_usr4
+        - test_usr5
+
+    - name: set name and email for test users
+      become: yes
+      become_user: '{{ item }}'
+      copy:
+        content: "[user]\tname = Existing Name\n\temail = existing@example.com\n"
+        dest: '~/.gitconfig'
+        mode: 'u=rw,go=r'
+        force: no
+      with_items:
+        - test_usr4
+        - test_usr5
+
   roles:
     - role: ansible_role_git_user
+      users:
+        - username: test_usr1
+          git_user_name: 'Test User1'
+          git_user_email: 'test1@example.com'
+        - username: test_usr2
+          git_user_name: ''
+          git_user_email: ''
+        - username: test_usr3
+          git_user_name:
+          git_user_email:
+        - username: test_usr4
+          git_user_name: 'Test User4'
+          git_user_email: 'test4@example.com'
+        - username: test_usr5
+          git_user_name: 'Test User5'
+          git_user_email: 'test5@example.com'
+          git_user_force: yes
