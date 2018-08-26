@@ -1,2 +1,14 @@
 ---
-# tasks file for ansible_role_git_user
+- name: ensure git installed
+  package:
+    name: git
+    state: present
+
+- name: set git user name and email
+  become: yes
+  become_user: '{{ item.username }}'
+  git_user:
+    name: '{{ item.git_user_name | default(omit) }}'
+    email: '{{ item.git_user_email | default(omit) }}'
+    force: '{{ item.git_user_force | default(omit) }}'
+  with_items: '{{ users | default([]) }}'
