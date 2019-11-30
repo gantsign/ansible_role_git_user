@@ -6,9 +6,11 @@
 
 - name: set git user name and email
   become: yes
-  become_user: '{{ item.username }}'
+  become_user: '{{ user.username }}'
   git_user:
-    name: '{{ item.git_user_name | default(omit) }}'
-    email: '{{ item.git_user_email | default(omit) }}'
-    force: '{{ item.git_user_force | default(omit) }}'
+    name: '{{ user.git_user_name | default(omit) }}'
+    email: '{{ user.git_user_email | default(omit) }}'
+    force: '{{ user.git_user_force | default(omit) }}'
   with_items: '{{ users | default([]) }}'
+  loop_control:
+    loop_var: user
