@@ -10,7 +10,7 @@ Role to configure the username and email address for users of Git.
 Requirements
 ------------
 
-* Ansible >= 2.7
+* Ansible >= 2.8
 
 * Linux Distribution
 
