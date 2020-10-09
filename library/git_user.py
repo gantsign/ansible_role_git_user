@@ -20,9 +20,11 @@ def main():
     git_path = module.get_bin_path('git', True)
 
     params = module.params
-    # We check error message for a pattern, so we need to make sure the messages appear in the form we're expecting.
+    # We check error message for a pattern, so we need to make sure the
+    # messages appear in the form we're expecting.
     # Set the locale to C to ensure consistent messages.
-    module.run_command_environ_update = dict(LANG='C', LC_ALL='C', LC_MESSAGES='C', LC_CTYPE='C')
+    module.run_command_environ_update = dict(
+        LANG='C', LC_ALL='C', LC_MESSAGES='C', LC_CTYPE='C')
 
     if params['name']:
         name = params['name']
@@ -57,8 +59,10 @@ def main():
                          cmd=' '.join(args))
 
     # Set new name
-    if (force or current_name is None) and name not in ('', None, current_name):
-
+    set_username = (
+        force or current_name is None) and name not in (
+        '', None, current_name)
+    if set_username:
         changed = True
         new_name = name
         if not module.check_mode:
@@ -89,8 +93,10 @@ def main():
                          cmd=' '.join(args))
 
     # Set new email
-    if (force or current_email is None) and email not in ('', None, current_email):
-
+    set_email = (
+        force or current_email is None) and email not in (
+        '', None, current_email)
+    if set_email:
         changed = True
         new_email = email
         if not module.check_mode:
