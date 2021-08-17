@@ -1,7 +1,7 @@
 Ansible Role: Git User
 ======================
 
-[![Build Status](https://travis-ci.com/gantsign/ansible_role_git_user.svg?branch=master)](https://travis-ci.com/gantsign/ansible_role_git_user)
+[![Tests](https://github.com/gantsign/ansible_role_git_user/workflows/Tests/badge.svg)](https://github.com/gantsign/ansible_role_git_user/actions?query=workflow%3ATests)
 [![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-gantsign.git__user-blue.svg)](https://galaxy.ansible.com/gantsign/git_user)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/gantsign/ansible_role_git_user/master/LICENSE)
 
